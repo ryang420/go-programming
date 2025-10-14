@@ -182,6 +182,10 @@ go test -v ./data-structures/arrays/
 
 # Run benchmarks
 go test -bench=. ./data-structures/arrays/
+
+# Test with coverage
+go test ./data-structures/stacks -coverprofile=coverage.out
+go tool cover -html=coverage.out -o coverage.html
 ```
 
 ## 📊 Performance Analysis

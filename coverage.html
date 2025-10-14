@@ -55,9 +55,9 @@
 			<div id="nav">
 				<select id="files">
 				
-				<option value="file0">go-programming/data-structures/stacks/linkedlist_stack.go (92.9%)</option>
+				<option value="file0">go-programming/data-structures/stacks/array_stack.go (77.4%)</option>
 				
-				<option value="file1">go-programming/data-structures/stacks/stack.go (77.4%)</option>
+				<option value="file1">go-programming/data-structures/stacks/linkedlist_stack.go (92.9%)</option>
 				
 				</select>
 			</div>
@@ -72,62 +72,6 @@
 		<div id="content">
 		
 		<pre class="file" id="file0" style="display: none">package stacks
-
-import "container/list"
-
-/* 基于链表实现的栈 */
-type LinkedListStack struct {
-    // 使用内置包 list 来实现栈
-    data *list.List
-}
-
-/* 初始化栈 */
-func NewLinkedListStack() *LinkedListStack <span class="cov8" title="1">{
-    return &amp;LinkedListStack{
-        data: list.New(),
-    }
-}</span>
-
-/* 入栈 */
-func (s *LinkedListStack) Push(value int) <span class="cov8" title="1">{
-    s.data.PushBack(value)
-}</span>
-
-/* 出栈 */
-func (s *LinkedListStack) Pop() any <span class="cov8" title="1">{
-    if s.IsEmpty() </span><span class="cov8" title="1">{
-        return nil
-    }</span>
-    <span class="cov8" title="1">e := s.data.Back()
-    s.data.Remove(e)
-    return e.Value</span>
-}
-
-/* 访问栈顶元素 */
-func (s *LinkedListStack) Peek() any <span class="cov8" title="1">{
-    if s.IsEmpty() </span><span class="cov8" title="1">{
-        return nil
-    }</span>
-    <span class="cov8" title="1">e := s.data.Back()
-    return e.Value</span>
-}
-
-/* 获取栈的长度 */
-func (s *LinkedListStack) Size() int <span class="cov8" title="1">{
-    return s.data.Len()
-}</span>
-
-/* 判断栈是否为空 */
-func (s *LinkedListStack) IsEmpty() bool <span class="cov8" title="1">{
-    return s.data.Len() == 0
-}</span>
-
-/* 获取 List 用于打印 */
-func (s *LinkedListStack) ToList() *list.List <span class="cov0" title="0">{
-    return s.data
-}</pre>
-		
-		<pre class="file" id="file1" style="display: none">package stacks
 
 import (
         "errors"
@@ -225,6 +169,62 @@ func (s *Stack) Contains(item int) bool <span class="cov8" title="1">{
         <span class="cov0" title="0">return false</span>
 }
 </pre>
+		
+		<pre class="file" id="file1" style="display: none">package stacks
+
+import "container/list"
+
+/* 基于链表实现的栈 */
+type LinkedListStack struct {
+    // 使用内置包 list 来实现栈
+    data *list.List
+}
+
+/* 初始化栈 */
+func NewLinkedListStack() *LinkedListStack <span class="cov8" title="1">{
+    return &amp;LinkedListStack{
+        data: list.New(),
+    }
+}</span>
+
+/* 入栈 */
+func (s *LinkedListStack) Push(value int) <span class="cov8" title="1">{
+    s.data.PushBack(value)
+}</span>
+
+/* 出栈 */
+func (s *LinkedListStack) Pop() any <span class="cov8" title="1">{
+    if s.IsEmpty() </span><span class="cov8" title="1">{
+        return nil
+    }</span>
+    <span class="cov8" title="1">e := s.data.Back()
+    s.data.Remove(e)
+    return e.Value</span>
+}
+
+/* 访问栈顶元素 */
+func (s *LinkedListStack) Peek() any <span class="cov8" title="1">{
+    if s.IsEmpty() </span><span class="cov8" title="1">{
+        return nil
+    }</span>
+    <span class="cov8" title="1">e := s.data.Back()
+    return e.Value</span>
+}
+
+/* 获取栈的长度 */
+func (s *LinkedListStack) Size() int <span class="cov8" title="1">{
+    return s.data.Len()
+}</span>
+
+/* 判断栈是否为空 */
+func (s *LinkedListStack) IsEmpty() bool <span class="cov8" title="1">{
+    return s.data.Len() == 0
+}</span>
+
+/* 获取 List 用于打印 */
+func (s *LinkedListStack) ToList() *list.List <span class="cov0" title="0">{
+    return s.data
+}</pre>
 		
 		</div>
 	</body>
