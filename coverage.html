@@ -1,0 +1,258 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>stacks: Go Coverage Report</title>
+		<style>
+			body {
+				background: black;
+				color: rgb(80, 80, 80);
+			}
+			body, pre, #legend span {
+				font-family: Menlo, monospace;
+				font-weight: bold;
+			}
+			#topbar {
+				background: black;
+				position: fixed;
+				top: 0; left: 0; right: 0;
+				height: 42px;
+				border-bottom: 1px solid rgb(80, 80, 80);
+			}
+			#content {
+				margin-top: 50px;
+			}
+			#nav, #legend {
+				float: left;
+				margin-left: 10px;
+			}
+			#legend {
+				margin-top: 12px;
+			}
+			#nav {
+				margin-top: 10px;
+			}
+			#legend span {
+				margin: 0 5px;
+			}
+			.cov0 { color: rgb(192, 0, 0) }
+.cov1 { color: rgb(128, 128, 128) }
+.cov2 { color: rgb(116, 140, 131) }
+.cov3 { color: rgb(104, 152, 134) }
+.cov4 { color: rgb(92, 164, 137) }
+.cov5 { color: rgb(80, 176, 140) }
+.cov6 { color: rgb(68, 188, 143) }
+.cov7 { color: rgb(56, 200, 146) }
+.cov8 { color: rgb(44, 212, 149) }
+.cov9 { color: rgb(32, 224, 152) }
+.cov10 { color: rgb(20, 236, 155) }
+
+		</style>
+	</head>
+	<body>
+		<div id="topbar">
+			<div id="nav">
+				<select id="files">
+				
+				<option value="file0">go-programming/data-structures/stacks/linkedlist_stack.go (92.9%)</option>
+				
+				<option value="file1">go-programming/data-structures/stacks/stack.go (77.4%)</option>
+				
+				</select>
+			</div>
+			<div id="legend">
+				<span>not tracked</span>
+			
+				<span class="cov0">not covered</span>
+				<span class="cov8">covered</span>
+			
+			</div>
+		</div>
+		<div id="content">
+		
+		<pre class="file" id="file0" style="display: none">package stacks
+
+import "container/list"
+
+/* 基于链表实现的栈 */
+type LinkedListStack struct {
+    // 使用内置包 list 来实现栈
+    data *list.List
+}
+
+/* 初始化栈 */
+func NewLinkedListStack() *LinkedListStack <span class="cov8" title="1">{
+    return &amp;LinkedListStack{
+        data: list.New(),
+    }
+}</span>
+
+/* 入栈 */
+func (s *LinkedListStack) Push(value int) <span class="cov8" title="1">{
+    s.data.PushBack(value)
+}</span>
+
+/* 出栈 */
+func (s *LinkedListStack) Pop() any <span class="cov8" title="1">{
+    if s.IsEmpty() </span><span class="cov8" title="1">{
+        return nil
+    }</span>
+    <span class="cov8" title="1">e := s.data.Back()
+    s.data.Remove(e)
+    return e.Value</span>
+}
+
+/* 访问栈顶元素 */
+func (s *LinkedListStack) Peek() any <span class="cov8" title="1">{
+    if s.IsEmpty() </span><span class="cov8" title="1">{
+        return nil
+    }</span>
+    <span class="cov8" title="1">e := s.data.Back()
+    return e.Value</span>
+}
+
+/* 获取栈的长度 */
+func (s *LinkedListStack) Size() int <span class="cov8" title="1">{
+    return s.data.Len()
+}</span>
+
+/* 判断栈是否为空 */
+func (s *LinkedListStack) IsEmpty() bool <span class="cov8" title="1">{
+    return s.data.Len() == 0
+}</span>
+
+/* 获取 List 用于打印 */
+func (s *LinkedListStack) ToList() *list.List <span class="cov0" title="0">{
+    return s.data
+}</pre>
+		
+		<pre class="file" id="file1" style="display: none">package stacks
+
+import (
+        "errors"
+        "fmt"
+        "strings"
+)
+
+// Stack represents a LIFO (Last In, First Out) data structure
+type Stack struct {
+        items []int
+}
+
+// NewStack creates a new empty stack
+func NewStack() *Stack <span class="cov8" title="1">{
+        return &amp;Stack{
+                items: make([]int, 0),
+        }
+}</span>
+
+// Push adds an element to the top of the stack
+func (s *Stack) Push(item int) <span class="cov8" title="1">{
+        s.items = append(s.items, item)
+}</span>
+
+// Pop removes and returns the top element from the stack
+func (s *Stack) Pop() (int, error) <span class="cov8" title="1">{
+        if s.IsEmpty() </span><span class="cov0" title="0">{
+                return 0, errors.New("stack is empty")
+        }</span>
+
+        <span class="cov8" title="1">index := len(s.items) - 1
+        item := s.items[index]
+        s.items = s.items[:index]
+        return item, nil</span>
+}
+
+// Peek returns the top element without removing it
+func (s *Stack) Peek() (int, error) <span class="cov8" title="1">{
+        if s.IsEmpty() </span><span class="cov0" title="0">{
+                return 0, errors.New("stack is empty")
+        }</span>
+
+        <span class="cov8" title="1">return s.items[len(s.items)-1], nil</span>
+}
+
+// IsEmpty checks if the stack is empty
+func (s *Stack) IsEmpty() bool <span class="cov8" title="1">{
+        return len(s.items) == 0
+}</span>
+
+// Size returns the number of elements in the stack
+func (s *Stack) Size() int <span class="cov8" title="1">{
+        return len(s.items)
+}</span>
+
+// Clear removes all elements from the stack
+func (s *Stack) Clear() <span class="cov8" title="1">{
+        s.items = s.items[:0]
+}</span>
+
+// ToSlice returns a copy of the stack elements as a slice (bottom to top)
+func (s *Stack) ToSlice() []int <span class="cov0" title="0">{
+        result := make([]int, len(s.items))
+        copy(result, s.items)
+        return result
+}</span>
+
+// String returns a string representation of the stack
+func (s *Stack) String() string <span class="cov8" title="1">{
+        if s.IsEmpty() </span><span class="cov0" title="0">{
+                return "Stack: []"
+        }</span>
+
+        <span class="cov8" title="1">var result strings.Builder
+        result.WriteString("Stack: [")
+
+        for i, item := range s.items </span><span class="cov8" title="1">{
+                result.WriteString(fmt.Sprintf("%d", item))
+                if i &lt; len(s.items)-1 </span><span class="cov8" title="1">{
+                        result.WriteString(", ")
+                }</span>
+        }
+
+        <span class="cov8" title="1">result.WriteString("] &lt;- top")
+        return result.String()</span>
+}
+
+// Contains checks if the stack contains the given value
+func (s *Stack) Contains(item int) bool <span class="cov8" title="1">{
+        for _, value := range s.items </span><span class="cov8" title="1">{
+                if value == item </span><span class="cov8" title="1">{
+                        return true
+                }</span>
+        }
+        <span class="cov0" title="0">return false</span>
+}
+</pre>
+		
+		</div>
+	</body>
+	<script>
+	(function() {
+		var files = document.getElementById('files');
+		var visible;
+		files.addEventListener('change', onChange, false);
+		function select(part) {
+			if (visible)
+				visible.style.display = 'none';
+			visible = document.getElementById(part);
+			if (!visible)
+				return;
+			files.value = part;
+			visible.style.display = 'block';
+			location.hash = part;
+		}
+		function onChange() {
+			select(files.value);
+			window.scrollTo(0, 0);
+		}
+		if (location.hash != "") {
+			select(location.hash.substr(1));
+		}
+		if (!visible) {
+			select("file0");
+		}
+	})();
+	</script>
+</html>
